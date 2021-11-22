@@ -1,0 +1,85 @@
+﻿@page "/ViewAllBurgers"
+@inject IBurgerService burgerService
+
+
+<h3>All 6 layered Burgers</h3>
+
+@if(burgerList.Count == 0)
+{
+    <span>Waiting for Burgers</span>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Burger Name</th>
+                <th>Layer 1</th>
+                <th>Layer 2</th>
+                <th>Layer 3</th>
+                <th>Layer 4</th>
+                <th>Layer 5</th>
+                <th>Layer 6</th>
+                <th>Authour Name</th>
+
+            </tr>
+            
+
+        </thead>
+
+        <tbody>
+            @foreach (var burger in burgerList)
+            {
+            <tr>
+                <!--get the Burger name-->
+                <td>
+                    @burger.getBurgerName()
+                </td>
+
+                <!--get the Filling-->
+                
+                 @{
+                      var f1 = burger.getFilling();
+
+                }
+               
+                <td>
+                    @f1.getLayer1()
+                </td>
+                <td>
+                    @f1.getLayer2()
+                </td>
+                <td>
+                    @f1.getLayer3()
+                </td>
+                <td>
+                    @f1.getLayer4()
+                </td>
+                <td>
+                    @f1.getLayer5()
+                </td>
+                <td>
+                    @f1.getLayer6()
+                </td>
+
+                <!--get the authour name-->
+                <td>
+                    @burger.getAuthourName()
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {        
+
+    List<Burger> burgerList = new List<Burger>();
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        burgerList = await burgerService.GetBurgers();
+    }
+
+}
