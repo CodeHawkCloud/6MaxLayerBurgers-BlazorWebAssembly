@@ -14,6 +14,8 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Shared
         public Burger()
         {
 
+            this.burgerName = "";
+
         }
 
         //overloaded constructor
