@@ -21,9 +21,17 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Client.Services
             _httpClient = httpClient;
 
         }
+
+        //get all the burgers
         public async Task<List<Burger>> GetBurgers()
         {
             return await _httpClient.GetFromJsonAsync<List<Burger>>("api/ViewAllBurgers");
+        }
+
+        //get a single burger
+        public async Task<Burger> GetABurger(string burgerName)
+        {
+            return await _httpClient.GetFromJsonAsync<Burger>($"api/ViewAllBurgers/{burgerName}");
         }
     }
 }

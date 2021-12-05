@@ -9,5 +9,7 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Client.Services
     public interface IBurgerService
     {
         Task<List<Burger>> GetBurgers();
+        Task<Burger> GetABurger(String burgerName);
+
     }
 }

@@ -1,0 +1,91 @@
+﻿@page "/SingleBurger"
+@inject IBurgerService burgerService
+
+<h3>The Solo Burger</h3>
+
+<!--search box for searching the burger-->
+<div class="col-md-12">
+    <form class="formClass form-inline" id="singleBurgerForm">
+        <input class="form-control col-lg-10 mr-2" type="text" placeholder="Enter the burger name..." @bind-value="@burgerToSearch" />
+        <button class="btn btn-primary" type="button" @onclick="@searchForTheBurger">Search</button><br/>
+    </form>
+</div>
+
+
+@if (b1.getBurgerName().Equals("") && !(burgerToSearch.Equals("")))
+{
+    <span class="mt-2">Waiting for the burger... If you have spent a quite a long time here we are sorry the burger you searched was not available :(</span>
+}
+else if (!(b1.getBurgerName().Equals("")))
+{
+    <div class="d-flex p-2 justify-content-center mt-2">
+        <h4>@b1.getBurgerName() by @b1.getAuthourName()</h4>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Layer</th>
+                <th>Ingredient</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!--layer 1-->
+            <tr class="table-primary">
+                <td>Layer 1</td>
+                <td>@b1.getFilling().getLayer1()</td>
+            </tr>
+            <!--layer 2-->
+            <tr class="table-secondary">
+                <td>Layer 2</td>
+                <td>@b1.getFilling().getLayer2()</td>
+            </tr>
+
+            <!--layer 3-->
+            <tr class="table-info">
+                <td>Layer 3</td>
+                <td>@b1.getFilling().getLayer3()</td>
+            </tr>
+
+            <!--layer 4-->
+            <tr class="table-danger">
+                <td>Layer 4</td>
+                <td>@b1.getFilling().getLayer4()</td>
+            </tr>
+
+            <!--layer 5-->
+            <tr class="table-success">
+                <td>Layer 5</td>
+                <td>@b1.getFilling().getLayer5()</td>
+            </tr>
+
+            <!--layer 6-->
+            <tr class="table-warning">
+                <td>Layer 6</td>
+                <td>@b1.getFilling().getLayer6()</td>
+            </tr>
+
+        </tbody>
+    </table>
+}
+
+@code {
+
+
+    private String burgerToSearch = "";
+
+    Burger b1 = new Burger();
+
+    async Task searchForTheBurger()
+    {
+
+        b1 = await burgerService.GetABurger(burgerToSearch);
+
+
+
+    }
+
+
+
+
+}
