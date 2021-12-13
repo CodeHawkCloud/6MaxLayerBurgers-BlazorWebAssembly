@@ -11,5 +11,7 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Client.Services
         Task<List<Burger>> GetBurgers();
         Task<Burger> GetABurger(String burgerName);
 
+        Task<List<Burger>> AddABurger(Burger b1);
+
     }
 }

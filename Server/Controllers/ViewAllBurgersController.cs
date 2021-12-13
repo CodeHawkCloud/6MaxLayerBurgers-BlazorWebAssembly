@@ -13,16 +13,7 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Server.Controllers
     public class ViewAllBurgersController : ControllerBase
     {
 
-
-        static Filling f1 = new Filling { layer1 = "Bun", layer2 = "Cheese", layer3 = "Egg", layer4 = "Tomatoes", layer5 = "Onions", layer6 = "Bun" };
-
-        /*
-        static Burger b1 = new Burger("CheeseBurger", f1, "Raji");
-        static Burger b2 = new Burger("CheeseBurger", f1, "Raji");*/
-
-
-        List<Burger> burgerList = new List<Burger>() { new Burger { burgerName = "CheeseBurger", filling = f1, authourName = "Raji" }, new Burger { burgerName = "Sodo", filling = f1, authourName = "Moo" } };
-
+        static List<Burger> burgerList = new List<Burger>();
 
         [HttpGet]
         //viewAllBurgers will display all the burgers
@@ -53,6 +44,14 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Server.Controllers
 
             return Ok(burger);
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> addABurger(Burger b1)
+        {
+            burgerList.Add(b1);
+
+            return Ok(burgerList);
         }
 
     }

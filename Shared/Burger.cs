@@ -15,6 +15,9 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Shared
         {
 
             this.burgerName = "";
+            Filling f1 = new Filling();
+            this.filling = f1;
+            this.authourName = "";
 
         }
 
