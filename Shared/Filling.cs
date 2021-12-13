@@ -15,6 +15,13 @@ namespace _6MaxLayerBurgers_BlazorWebAssembly.Shared
 
         public Filling()
         {
+            layer1 = "Bun";
+            layer2 = "";
+            layer3 = "";
+            layer4 = "";
+            layer5 = "";
+            layer6 = "Bun";
+
 
         }
         //overloaded constructor

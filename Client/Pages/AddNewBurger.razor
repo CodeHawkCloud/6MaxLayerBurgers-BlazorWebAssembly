@@ -1,0 +1,51 @@
+﻿@page "/AddNewBurger"
+
+@inject IBurgerService burgerService
+
+<h3>Add a New Burger</h3>
+
+<div class="col-md-12">
+
+    <!--add new burger form-->
+    <EditForm Model="b1" OnSubmit="addBurgerHandler">
+
+        <input class="form-control col-lg-12 mb-2" type="text" placeholder="Burger Name" @bind-value="b1.burgerName" />
+
+        <input class="form-control col-lg-12 mb-2" type="text" placeholder="Author Name" @bind-value="b1.authourName" />
+
+        <!--label for the Layers-->
+        <label class="col-form-label-lg">Layers</label>
+
+        <!--alert box provding the users with information on the number of layers that they can enter-->
+        <div class="alert alert-info">
+            <h6>You are only allowed to enter 4 layers into the burger, since the buns on either side are automatically added :)</h6>
+        </div>
+
+        <input class="form-control col-lg-12 mb-2" type="text" value="Bun" disabled="disabled" />
+        <input class="form-control col-lg-12 mb-2" type="text" placeholder="Layer 2" @bind-value="b1.filling.layer2" />
+        <input class="form-control col-lg-12 mb-2" type="text" placeholder="Layer 3" @bind-value="b1.filling.layer3" />
+        <input class="form-control col-lg-12 mb-2" type="text" placeholder="Layer 4" @bind-value="b1.filling.layer4" />
+        <input class="form-control col-lg-12 mb-2" type="text" placeholder="Layer 5" @bind-value="b1.filling.layer5" />
+        <input class="form-control col-lg-12 mb-2" type="text" value="Bun" disabled="disabled" />
+
+        <!--submit button-->
+        <button class="btn btn-primary" type="submit">Add My Burger !!!</button>
+
+    </EditForm>
+</div>
+
+@code {
+
+    public Burger b1 { get; set; } = new Burger();
+
+    //addBurgerHandler function
+    async void addBurgerHandler()
+    {
+
+       await burgerService.AddABurger(b1);
+
+    }
+
+
+
+}
